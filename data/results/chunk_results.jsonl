@@ -1,32 +1,32 @@
-{"chunk": 1, "start_line": 1, "end_line": 9, "prompt_tokens": 1543, "duration_seconds": 21.55, "findings": [], "error": null}
-{"chunk": 2, "start_line": 10, "end_line": 18, "prompt_tokens": 1527, "duration_seconds": 18.98, "findings": [], "error": null}
-{"chunk": 3, "start_line": 19, "end_line": 27, "prompt_tokens": 1472, "duration_seconds": 16.61, "findings": [], "error": null}
-{"chunk": 4, "start_line": 28, "end_line": 35, "prompt_tokens": 1488, "duration_seconds": 44.4, "findings": [], "error": "Chunk 4, attempt 2: Expecting ',' delimiter: line 10 column 6 (char 727)"}
-{"chunk": 5, "start_line": 36, "end_line": 43, "prompt_tokens": 1503, "duration_seconds": 37.15, "findings": [], "error": null}
-{"chunk": 6, "start_line": 44, "end_line": 52, "prompt_tokens": 1468, "duration_seconds": 49.43, "findings": [], "error": "Chunk 6, attempt 2: Unterminated string starting at: line 8 column 9 (char 601)"}
-{"chunk": 7, "start_line": 53, "end_line": 61, "prompt_tokens": 1541, "duration_seconds": 50.34, "findings": [], "error": "Chunk 7, attempt 2: Unterminated string starting at: line 7 column 9 (char 111)"}
-{"chunk": 8, "start_line": 62, "end_line": 70, "prompt_tokens": 1457, "duration_seconds": 42.32, "findings": [], "error": "Chunk 8, attempt 2: Unterminated string starting at: line 9 column 9 (char 511)"}
-{"chunk": 9, "start_line": 71, "end_line": 78, "prompt_tokens": 1438, "duration_seconds": 22.03, "findings": [], "error": null}
-{"chunk": 10, "start_line": 79, "end_line": 87, "prompt_tokens": 1523, "duration_seconds": 37.96, "findings": [], "error": null}
-{"chunk": 11, "start_line": 88, "end_line": 95, "prompt_tokens": 1505, "duration_seconds": 16.99, "findings": [], "error": null}
-{"chunk": 12, "start_line": 96, "end_line": 103, "prompt_tokens": 1511, "duration_seconds": 41.89, "findings": [], "error": null}
-{"chunk": 13, "start_line": 104, "end_line": 111, "prompt_tokens": 1549, "duration_seconds": 17.21, "findings": [], "error": null}
-{"chunk": 14, "start_line": 112, "end_line": 120, "prompt_tokens": 1446, "duration_seconds": 46.41, "findings": [], "error": "Chunk 14, attempt 2: Expecting ',' delimiter: line 13 column 6 (char 1128)"}
-{"chunk": 15, "start_line": 121, "end_line": 127, "prompt_tokens": 1387, "duration_seconds": 16.15, "findings": [], "error": null}
-{"chunk": 16, "start_line": 128, "end_line": 135, "prompt_tokens": 1449, "duration_seconds": 42.42, "findings": [], "error": "Chunk 16, attempt 2: Unterminated string starting at: line 9 column 9 (char 646)"}
-{"chunk": 17, "start_line": 136, "end_line": 143, "prompt_tokens": 1532, "duration_seconds": 24.37, "findings": [], "error": null}
-{"chunk": 18, "start_line": 144, "end_line": 151, "prompt_tokens": 1384, "duration_seconds": 20.0, "findings": [], "error": null}
-{"chunk": 19, "start_line": 152, "end_line": 159, "prompt_tokens": 1498, "duration_seconds": 43.29, "findings": [], "error": "Chunk 19, attempt 2: Unterminated string starting at: line 8 column 9 (char 580)"}
-{"chunk": 20, "start_line": 160, "end_line": 167, "prompt_tokens": 1399, "duration_seconds": 12.64, "findings": [], "error": null}
-{"chunk": 21, "start_line": 168, "end_line": 175, "prompt_tokens": 1514, "duration_seconds": 14.95, "findings": [], "error": null}
-{"chunk": 22, "start_line": 176, "end_line": 184, "prompt_tokens": 1547, "duration_seconds": 15.8, "findings": [], "error": null}
-{"chunk": 23, "start_line": 185, "end_line": 192, "prompt_tokens": 1498, "duration_seconds": 17.44, "findings": [], "error": null}
-{"chunk": 24, "start_line": 193, "end_line": 200, "prompt_tokens": 1543, "duration_seconds": 44.42, "findings": [], "error": "Chunk 24, attempt 2: Expecting ',' delimiter: line 21 column 6 (char 1073)"}
-{"chunk": 25, "start_line": 201, "end_line": 209, "prompt_tokens": 1509, "duration_seconds": 44.04, "findings": [], "error": "Chunk 25, attempt 2: Unterminated string starting at: line 18 column 9 (char 1077)"}
-{"chunk": 26, "start_line": 210, "end_line": 217, "prompt_tokens": 1503, "duration_seconds": 43.72, "findings": [], "error": "Chunk 26, attempt 2: Unterminated string starting at: line 9 column 9 (char 501)"}
-{"chunk": 27, "start_line": 218, "end_line": 225, "prompt_tokens": 1520, "duration_seconds": 18.09, "findings": [], "error": null}
-{"chunk": 28, "start_line": 226, "end_line": 234, "prompt_tokens": 1515, "duration_seconds": 16.49, "findings": [], "error": null}
-{"chunk": 29, "start_line": 235, "end_line": 241, "prompt_tokens": 1404, "duration_seconds": 23.56, "findings": [], "error": null}
-{"chunk": 30, "start_line": 242, "end_line": 248, "prompt_tokens": 1407, "duration_seconds": 45.83, "findings": [], "error": "Chunk 30, attempt 2: Model returned no JSON object"}
-{"chunk": 31, "start_line": 249, "end_line": 255, "prompt_tokens": 1444, "duration_seconds": 23.81, "findings": [], "error": null}
-{"chunk": 32, "start_line": 256, "end_line": 258, "prompt_tokens": 653, "duration_seconds": 12.72, "findings": [], "error": null}
+{"chunk": 1, "start_line": 1, "end_line": 9, "prompt_tokens": 1543, "duration_seconds": 10.77, "findings": [], "error": null}
+{"chunk": 2, "start_line": 10, "end_line": 18, "prompt_tokens": 1527, "duration_seconds": 14.7, "findings": [], "error": null}
+{"chunk": 3, "start_line": 19, "end_line": 27, "prompt_tokens": 1472, "duration_seconds": 13.07, "findings": [], "error": null}
+{"chunk": 4, "start_line": 28, "end_line": 35, "prompt_tokens": 1488, "duration_seconds": 41.55, "findings": [], "error": "Chunk 4, attempt 2: Expecting ',' delimiter: line 11 column 6 (char 849)"}
+{"chunk": 5, "start_line": 36, "end_line": 43, "prompt_tokens": 1503, "duration_seconds": 37.53, "findings": [], "error": "Chunk 5, attempt 2: Unterminated string starting at: line 9 column 9 (char 499)"}
+{"chunk": 6, "start_line": 44, "end_line": 52, "prompt_tokens": 1468, "duration_seconds": 41.51, "findings": [], "error": "Chunk 6, attempt 2: Unterminated string starting at: line 16 column 9 (char 961)"}
+{"chunk": 7, "start_line": 53, "end_line": 61, "prompt_tokens": 1541, "duration_seconds": 39.88, "findings": [], "error": "Chunk 7, attempt 2: Expecting ',' delimiter: line 12 column 6 (char 938)"}
+{"chunk": 8, "start_line": 62, "end_line": 70, "prompt_tokens": 1457, "duration_seconds": 35.84, "findings": [], "error": "Chunk 8, attempt 2: Unterminated string starting at: line 9 column 9 (char 511)"}
+{"chunk": 9, "start_line": 71, "end_line": 78, "prompt_tokens": 1438, "duration_seconds": 29.01, "findings": [], "error": null}
+{"chunk": 10, "start_line": 79, "end_line": 87, "prompt_tokens": 1523, "duration_seconds": 13.12, "findings": [], "error": null}
+{"chunk": 11, "start_line": 88, "end_line": 95, "prompt_tokens": 1505, "duration_seconds": 11.63, "findings": [], "error": null}
+{"chunk": 12, "start_line": 96, "end_line": 103, "prompt_tokens": 1511, "duration_seconds": 40.12, "findings": [], "error": "Chunk 12, attempt 2: Model returned no JSON object"}
+{"chunk": 13, "start_line": 104, "end_line": 111, "prompt_tokens": 1549, "duration_seconds": 8.58, "findings": [], "error": null}
+{"chunk": 14, "start_line": 112, "end_line": 120, "prompt_tokens": 1446, "duration_seconds": 39.61, "findings": [], "error": "Chunk 14, attempt 2: Unterminated string starting at: line 8 column 9 (char 166)"}
+{"chunk": 15, "start_line": 121, "end_line": 127, "prompt_tokens": 1387, "duration_seconds": 38.52, "findings": [], "error": "Chunk 15, attempt 2: Expecting ',' delimiter: line 10 column 6 (char 935)"}
+{"chunk": 16, "start_line": 128, "end_line": 135, "prompt_tokens": 1449, "duration_seconds": 38.41, "findings": [], "error": "Chunk 16, attempt 2: Model returned no JSON object"}
+{"chunk": 17, "start_line": 136, "end_line": 143, "prompt_tokens": 1532, "duration_seconds": 11.15, "findings": [], "error": null}
+{"chunk": 18, "start_line": 144, "end_line": 151, "prompt_tokens": 1384, "duration_seconds": 14.4, "findings": [], "error": null}
+{"chunk": 19, "start_line": 152, "end_line": 159, "prompt_tokens": 1498, "duration_seconds": 42.57, "findings": [], "error": "Chunk 19, attempt 2: Unterminated string starting at: line 10 column 9 (char 620)"}
+{"chunk": 20, "start_line": 160, "end_line": 167, "prompt_tokens": 1399, "duration_seconds": 46.08, "findings": [], "error": null}
+{"chunk": 21, "start_line": 168, "end_line": 175, "prompt_tokens": 1514, "duration_seconds": 19.11, "findings": [], "error": null}
+{"chunk": 22, "start_line": 176, "end_line": 184, "prompt_tokens": 1547, "duration_seconds": 15.33, "findings": [], "error": null}
+{"chunk": 23, "start_line": 185, "end_line": 192, "prompt_tokens": 1498, "duration_seconds": 14.91, "findings": [], "error": null}
+{"chunk": 24, "start_line": 193, "end_line": 200, "prompt_tokens": 1543, "duration_seconds": 37.34, "findings": [], "error": null}
+{"chunk": 25, "start_line": 201, "end_line": 209, "prompt_tokens": 1509, "duration_seconds": 14.53, "findings": [], "error": null}
+{"chunk": 26, "start_line": 210, "end_line": 217, "prompt_tokens": 1503, "duration_seconds": 36.27, "findings": [], "error": "Chunk 26, attempt 2: Unterminated string starting at: line 9 column 9 (char 501)"}
+{"chunk": 27, "start_line": 218, "end_line": 225, "prompt_tokens": 1520, "duration_seconds": 9.48, "findings": [], "error": null}
+{"chunk": 28, "start_line": 226, "end_line": 234, "prompt_tokens": 1515, "duration_seconds": 31.31, "findings": [], "error": null}
+{"chunk": 29, "start_line": 235, "end_line": 241, "prompt_tokens": 1404, "duration_seconds": 10.46, "findings": [], "error": null}
+{"chunk": 30, "start_line": 242, "end_line": 248, "prompt_tokens": 1407, "duration_seconds": 37.91, "findings": [], "error": "Chunk 30, attempt 2: Expecting ',' delimiter: line 10 column 6 (char 1026)"}
+{"chunk": 31, "start_line": 249, "end_line": 255, "prompt_tokens": 1444, "duration_seconds": 38.48, "findings": [], "error": "Chunk 31, attempt 2: Model returned no JSON object"}
+{"chunk": 32, "start_line": 256, "end_line": 258, "prompt_tokens": 653, "duration_seconds": 9.69, "findings": [], "error": null}

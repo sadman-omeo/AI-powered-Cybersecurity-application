@@ -1,10 +1,10 @@
 {
   "status": "partial",
-  "log_file": "Cultive8_Workspace_Agrigen_Server.log",
+  "log_file": "1b796839dbcf4cbca8f799d7dd1f28d1.log",
   "total_entries": 258,
   "chunks_processed": 32,
   "local_model": "models/qwen3.5-0.8b-Q4_K_M.gguf",
-  "duration_seconds": 945.28,
+  "duration_seconds": 845.47,
   "findings_count": 4,
   "findings": [
     {
@@ -94,16 +94,18 @@
     }
   ],
   "errors": [
-    "Chunk 4, attempt 2: Expecting ',' delimiter: line 10 column 6 (char 727)",
-    "Chunk 6, attempt 2: Unterminated string starting at: line 8 column 9 (char 601)",
-    "Chunk 7, attempt 2: Unterminated string starting at: line 7 column 9 (char 111)",
+    "Chunk 4, attempt 2: Expecting ',' delimiter: line 11 column 6 (char 849)",
+    "Chunk 5, attempt 2: Unterminated string starting at: line 9 column 9 (char 499)",
+    "Chunk 6, attempt 2: Unterminated string starting at: line 16 column 9 (char 961)",
+    "Chunk 7, attempt 2: Expecting ',' delimiter: line 12 column 6 (char 938)",
     "Chunk 8, attempt 2: Unterminated string starting at: line 9 column 9 (char 511)",
-    "Chunk 14, attempt 2: Expecting ',' delimiter: line 13 column 6 (char 1128)",
-    "Chunk 16, attempt 2: Unterminated string starting at: line 9 column 9 (char 646)",
-    "Chunk 19, attempt 2: Unterminated string starting at: line 8 column 9 (char 580)",
-    "Chunk 24, attempt 2: Expecting ',' delimiter: line 21 column 6 (char 1073)",
-    "Chunk 25, attempt 2: Unterminated string starting at: line 18 column 9 (char 1077)",
+    "Chunk 12, attempt 2: Model returned no JSON object",
+    "Chunk 14, attempt 2: Unterminated string starting at: line 8 column 9 (char 166)",
+    "Chunk 15, attempt 2: Expecting ',' delimiter: line 10 column 6 (char 935)",
+    "Chunk 16, attempt 2: Model returned no JSON object",
+    "Chunk 19, attempt 2: Unterminated string starting at: line 10 column 9 (char 620)",
     "Chunk 26, attempt 2: Unterminated string starting at: line 9 column 9 (char 501)",
-    "Chunk 30, attempt 2: Model returned no JSON object"
+    "Chunk 30, attempt 2: Expecting ',' delimiter: line 10 column 6 (char 1026)",
+    "Chunk 31, attempt 2: Model returned no JSON object"
   ]
 }

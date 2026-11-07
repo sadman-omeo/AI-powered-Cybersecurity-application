@@ -1,0 +1,449 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Cultive8 | AI Security Analyzer</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    background: #0b1220;
+    color: #e5eaf2;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background: #111c30;
+    border-bottom: 1px solid #263449;
+    padding: 22px 5%;
+}
+
+.brand {
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    color: #56dfba;
+}
+
+h1 { margin: 12px 0 8px; font-size: 30px; }
+h2 { margin-top: 0; font-size: 20px; }
+
+.subtitle { color: #9aa9bd; line-height: 1.6; }
+
+main {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 0 18px 50px;
+}
+
+.panel {
+    background: #142036;
+    border: 1px solid #293a52;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 22px;
+}
+
+input[type=file] {
+    padding: 15px;
+    width: 100%;
+    border: 1px dashed #667a94;
+    background: #0d1728;
+    color: #dbe6f2;
+    border-radius: 8px;
+    margin: 16px 0;
+}
+
+button, .download {
+    display: inline-block;
+    border: none;
+    background: #3bd0a7;
+    color: #071c1b;
+    font-weight: bold;
+    padding: 13px 22px;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.progress-track {
+    height: 13px;
+    background: #29374a;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 15px 0;
+}
+
+#progressBar {
+    height: 100%;
+    width: 0%;
+    background: #3bd0a7;
+    transition: width 0.3s;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 22px;
+}
+
+.stat {
+    background: #142036;
+    border: 1px solid #293a52;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.stat strong {
+    display: block;
+    font-size: 29px;
+    margin-top: 8px;
+}
+
+.stat span { color: #9aa9bd; font-size: 13px; }
+
+.finding {
+    border: 1px solid #34445a;
+    border-left: 5px solid #e8ae53;
+    background: #101b2d;
+    padding: 20px;
+    border-radius: 9px;
+    margin: 15px 0;
+}
+
+.finding.high { border-left-color: #f17873; }
+.finding.critical { border-left-color: #ef4444; }
+.finding.low { border-left-color: #56c7a7; }
+
+.finding h3 { margin: 0 0 12px; }
+.finding p { line-height: 1.55; margin: 8px 0; }
+.finding small { color: #aab7ca; }
+
+.badge {
+    float: right;
+    font-size: 12px;
+    padding: 6px 9px;
+    border-radius: 5px;
+    background: #304159;
+}
+
+#message { color: #aec0d5; }
+.warning { color: #f3ba72; }
+.hidden { display: none; }
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #7f91a7;
+    font-size: 13px;
+}
+
+@media(max-width:600px) {
+    .stats { grid-template-columns: 1fr; }
+    h1 { font-size: 24px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="brand">CULTIVE8 / SECURITY INTELLIGENCE</div>
+    <h1>Local AI Security Log Analyzer</h1>
+    <div class="subtitle">
+        Offline-capable threat detection using Qwen, Python,
+        and cross-chunk event correlation.
+    </div>
+</header>
+
+<main>
+
+<section class="panel">
+    <h2>Upload Server Logs</h2>
+    <p class="subtitle">
+        Upload a .log or .txt file (maximum 10 MB).
+        Analysis runs locally without cloud AI APIs.
+    </p>
+
+    <input type="file" id="fileInput" accept=".log,.txt">
+
+    <button id="analyzeButton" onclick="startAnalysis()">
+        Start Security Analysis
+    </button>
+
+    <p id="message">Ready to analyze.</p>
+</section>
+
+<section class="panel">
+    <h2>Analysis Progress</h2>
+    <div id="statusText">Status: Idle</div>
+
+    <div class="progress-track">
+        <div id="progressBar"></div>
+    </div>
+
+    <div id="progressText">0 / 0 entries processed</div>
+</section>
+
+<div class="stats">
+    <div class="stat">
+        <span>LOG ENTRIES</span>
+        <strong id="totalEntries">0</strong>
+    </div>
+    <div class="stat">
+        <span>CHUNKS PROCESSED</span>
+        <strong id="chunkCount">0</strong>
+    </div>
+    <div class="stat">
+        <span>SECURITY FINDINGS</span>
+        <strong id="findingCount">0</strong>
+    </div>
+</div>
+
+<section class="panel hidden" id="reportPanel">
+
+    <h2>Security Analysis Report</h2>
+
+    <p id="reportSummary"></p>
+
+    <a class="download" href="/api/report/download">
+        Download JSON Report
+    </a>
+
+    <div id="findings"></div>
+
+</section>
+
+</main>
+
+<footer>
+    Cultive8 Developer Assessment | Local AI Security Analysis
+</footer>
+
+<script>
+
+const fileInput = document.getElementById("fileInput");
+const button = document.getElementById("analyzeButton");
+const message = document.getElementById("message");
+
+const statusText = document.getElementById("statusText");
+const progressBar = document.getElementById("progressBar");
+const progressText = document.getElementById("progressText");
+
+let polling = null;
+let reportLoaded = false;
+
+
+async function startAnalysis() {
+
+    const file = fileInput.files[0];
+
+    if (!file) {
+        alert("Please select a .log or .txt file.");
+        return;
+    }
+
+    button.disabled = true;
+    reportLoaded = false;
+
+    document.getElementById("reportPanel")
+        .classList.add("hidden");
+
+    document.getElementById("findingCount").textContent = "0";
+
+    message.textContent = "Uploading and starting analysis...";
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+
+        const response = await fetch("/api/analyze", {
+            method: "POST",
+            body: formData
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.detail || "Upload failed");
+        }
+
+        message.textContent = "Analysis started successfully.";
+
+        if (polling) clearInterval(polling);
+
+        await updateProgress();
+
+        polling = setInterval(updateProgress, 2000);
+
+    } catch (error) {
+        message.textContent = "Error: " + error.message;
+        button.disabled = false;
+    }
+}
+
+
+async function updateProgress() {
+
+    try {
+
+        const response = await fetch("/api/status");
+
+        if (!response.ok) {
+            throw new Error("Could not read status");
+        }
+
+        const data = await response.json();
+
+        statusText.textContent = "Status: " + data.status;
+
+        const percent = data.total > 0
+            ? Math.round(data.processed / data.total * 100)
+            : 0;
+
+        progressBar.style.width = percent + "%";
+
+        progressText.textContent =
+            `${data.processed} / ${data.total} entries processed`;
+
+        document.getElementById("totalEntries")
+            .textContent = data.total;
+
+        document.getElementById("chunkCount")
+            .textContent = data.chunks;
+
+        if (data.status === "running" ||
+            data.status === "uploading") {
+            button.disabled = true;
+        }
+
+        if (["complete", "partial", "failed"].includes(data.status)) {
+
+            if (polling) {
+                clearInterval(polling);
+                polling = null;
+            }
+
+            button.disabled = false;
+
+            message.textContent =
+                data.message || "Processing finished.";
+
+            if (data.status !== "failed" && !reportLoaded) {
+                reportLoaded = true;
+                await loadReport();
+            }
+        }
+
+    } catch (error) {
+        message.textContent = "Progress error: " + error.message;
+    }
+}
+
+
+function addText(parent, tag, label, value) {
+
+    const element = document.createElement(tag);
+
+    if (label) {
+        const bold = document.createElement("strong");
+        bold.textContent = label;
+        element.appendChild(bold);
+    }
+
+    element.appendChild(
+        document.createTextNode(String(value || ""))
+    );
+
+    parent.appendChild(element);
+}
+
+
+async function loadReport() {
+
+    const response = await fetch("/api/report");
+
+    if (!response.ok) {
+        throw new Error("Report could not be loaded");
+    }
+
+    const report = await response.json();
+
+    document.getElementById("reportPanel")
+        .classList.remove("hidden");
+
+    document.getElementById("findingCount")
+        .textContent = report.findings_count;
+
+    document.getElementById("reportSummary")
+        .textContent =
+            `Status: ${report.status} | ` +
+            `Model: ${report.local_model} | ` +
+            `Time: ${report.duration_seconds}s | ` +
+            `Model errors: ${report.errors.length}`;
+
+    const container = document.getElementById("findings");
+    container.replaceChildren();
+
+    if (!report.findings.length) {
+        addText(container, "p", "",
+            "No supported security findings were returned.");
+        return;
+    }
+
+    for (const finding of report.findings) {
+
+        const card = document.createElement("div");
+
+        card.className =
+            "finding " + finding.severity.toLowerCase();
+
+        const badge = document.createElement("span");
+        badge.className = "badge";
+        badge.textContent = finding.severity;
+        card.appendChild(badge);
+
+        addText(card, "h3", "", finding.attack_type);
+        addText(card, "p", "Source: ", finding.identifier);
+        addText(card, "p", "Reason: ", finding.reason);
+        addText(card, "p", "Action: ", finding.suggested_action);
+
+        addText(
+            card,
+            "p",
+            "Evidence lines: ",
+            finding.evidence_lines.join(", ")
+        );
+
+        addText(
+            card,
+            "small",
+            "Detection source: ",
+            finding.sources.join(", ")
+        );
+
+        container.appendChild(card);
+    }
+}
+
+
+// Load any previous report when the page opens
+updateProgress();
+
+</script>
+
+</body>
+</html>
