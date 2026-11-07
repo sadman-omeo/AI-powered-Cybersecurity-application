@@ -24,6 +24,61 @@ SEVERITY_ORDER = {
 }
 
 
+FINDINGS_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "findings": {
+            "type": "array",
+            "maxItems": 2,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "attack_type": {
+                        "type": "string"
+                    },
+                    "severity": {
+                        "type": "string",
+                        "enum": [
+                            "Low",
+                            "Medium",
+                            "High",
+                            "Critical"
+                        ]
+                    },
+                    "identifier": {
+                        "type": "string"
+                    },
+                    "evidence_lines": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer"
+                        }
+                    },
+                    "reason": {
+                        "type": "string"
+                    },
+                    "suggested_action": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "attack_type",
+                    "severity",
+                    "identifier",
+                    "evidence_lines",
+                    "reason",
+                    "suggested_action"
+                ],
+                "additionalProperties": False
+            }
+        }
+    },
+    "required": ["findings"],
+    "additionalProperties": False
+}
+
+
+
 def parse_findings(content, chunk):
     """Validate model JSON and original evidence lines."""
 
@@ -267,7 +322,8 @@ def run_analysis(
                             "max_tokens": RESERVED_OUTPUT,
                             "stream": False,
                             "response_format": {
-                                "type": "json_object"
+                                "type": "json_schema",
+                                "schema": FINDINGS_SCHEMA
                             }
                         },
                         timeout=180
@@ -279,6 +335,11 @@ def run_analysis(
                     message = choice["message"]
 
                     content = (message.get("content") or "").strip()
+
+                    if choice.get("finish_reason") == "length":
+                        raise ValueError(
+                            "Model response exceeded output token limit"
+                        )
 
                     if not content:
                         raise ValueError(

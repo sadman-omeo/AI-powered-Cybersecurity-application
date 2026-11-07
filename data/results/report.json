@@ -1,11 +1,11 @@
 {
-  "status": "partial",
-  "log_file": "1b796839dbcf4cbca8f799d7dd1f28d1.log",
+  "status": "complete",
+  "log_file": "Cultive8_Workspace_Agrigen_Server.log",
   "total_entries": 258,
-  "chunks_processed": 32,
+  "chunks_processed": 46,
   "local_model": "models/qwen3.5-0.8b-Q4_K_M.gguf",
-  "duration_seconds": 845.47,
-  "findings_count": 4,
+  "duration_seconds": 404.34,
+  "findings_count": 15,
   "findings": [
     {
       "attack_type": "Possible brute-force followed by access",
@@ -31,7 +31,131 @@
       "reason": "12 failed logins for workspace.admin followed by successful authentication and later activity.",
       "suggested_action": "Investigate login history, validate account ownership, enforce MFA and rate limits.",
       "sources": [
-        "cross_chunk_rules"
+        "cross_chunk_rules",
+        "local_ai"
+      ]
+    },
+    {
+      "attack_type": "Brute Force",
+      "severity": "Medium",
+      "identifier": "198.51.100.102",
+      "evidence_lines": [
+        55,
+        56
+      ],
+      "reason": "Failed logins detected at L55 and L56 (5 failed logins)",
+      "suggested_action": "Implement rate limiting on /api/v1/profile endpoint; Review /api/v1/profile for brute force patterns.",
+      "sources": [
+        "local_ai"
+      ]
+    },
+    {
+      "attack_type": "SQL Injection",
+      "severity": "Medium",
+      "identifier": "198.51.100.104",
+      "evidence_lines": [
+        57,
+        58
+      ],
+      "reason": "Failed to access /api/v1/weather due to path traversal attempt detected in log line 57 (GET /api/v1/weather)",
+      "suggested_action": "Block /api/v1/weather and /assets/ paths on 198.51.100.104; Review /api/v1/weather for SQL injection patterns.",
+      "sources": [
+        "local_ai"
+      ]
+    },
+    {
+      "attack_type": "Brute Force",
+      "severity": "Medium",
+      "identifier": "198.51.100.107",
+      "evidence_lines": [
+        224
+      ],
+      "reason": "Single GET request to /api/v1/weather with no prior failed attempts, but high frequency of requests",
+      "suggested_action": "Implement rate limiting on /api/v1/weather endpoint; Monitor for repeated failed login attempts",
+      "sources": [
+        "local_ai"
+      ]
+    },
+    {
+      "attack_type": "brute_force",
+      "severity": "Medium",
+      "identifier": "198.51.100.110",
+      "evidence_lines": [
+        93
+      ],
+      "reason": "Repeated failed login attempts (L5-L80) detected in the 'BEGIN UNTRUSTED LOGS' section, indicating a brute force attack on the cultive8 workspace.",
+      "suggested_action": "Immediately isolate the IP address 198.51.100.110 and implement rate limiting on the /login endpoint to prevent further unauthorized access attempts.",
+      "sources": [
+        "local_ai"
+      ]
+    },
+    {
+      "attack_type": "Brute Force",
+      "severity": "Medium",
+      "identifier": "198.51.100.114",
+      "evidence_lines": [
+        221
+      ],
+      "reason": "12 failed logins detected on first L5, last L189, indicating brute force attack pattern",
+      "suggested_action": "Implement rate limiting on /api/v1/dashboard endpoint; Implement CAPTCHA for login attempts",
+      "sources": [
+        "local_ai"
+      ]
+    },
+    {
+      "attack_type": "brute_force",
+      "severity": "Medium",
+      "identifier": "198.51.100.82",
+      "evidence_lines": [
+        20,
+        21
+      ],
+      "reason": "Multiple failed login attempts detected (L5, L13) from the same IP address, indicating a brute force attack pattern.",
+      "suggested_action": "Block IP 198.51.100.82 and implement rate limiting on the /api/v1/auth/login endpoint.",
+      "sources": [
+        "local_ai"
+      ]
+    },
+    {
+      "attack_type": "brute_force",
+      "severity": "Medium",
+      "identifier": "198.51.100.83",
+      "evidence_lines": [
+        149,
+        150
+      ],
+      "reason": "Multiple failed login attempts detected on the same IP address within a short timeframe, indicating a brute force attack pattern.",
+      "suggested_action": "Block IP 198.51.100.83 and implement rate limiting on the gateway service.",
+      "sources": [
+        "local_ai"
+      ]
+    },
+    {
+      "attack_type": "brute_force",
+      "severity": "Medium",
+      "identifier": "198.51.100.91",
+      "evidence_lines": [
+        63,
+        65
+      ],
+      "reason": "Multiple failed login attempts detected (L63, L65) from the same IP address, indicating a brute force attack pattern.",
+      "suggested_action": "Block IP 198.51.100.91 and implement rate limiting on the /api/v1/auth/login endpoint.",
+      "sources": [
+        "local_ai"
+      ]
+    },
+    {
+      "attack_type": "brute_force",
+      "severity": "Medium",
+      "identifier": "198.51.100.98",
+      "evidence_lines": [
+        22,
+        225
+      ],
+      "reason": "Failed login attempt from IP 198.51.100.98 (L13) from the same IP address, indicating a second failed login attempt from the same source.",
+      "suggested_action": "Block IP 198.51.100.98 and implement rate limiting on the /api/v1/auth/login endpoint.",
+      "sources": [
+        "local_ai"
       ]
     },
     {
@@ -66,12 +190,47 @@
         29,
         30,
         32,
-        222
+        222,
+        223
       ],
       "reason": "SQL-style payloads appeared in request paths; success is not established.",
       "suggested_action": "Inspect rejected requests, use parameterized queries and review WAF protections.",
       "sources": [
-        "cross_chunk_rules"
+        "cross_chunk_rules",
+        "local_ai"
+      ]
+    },
+    {
+      "attack_type": "brute_force",
+      "severity": "Medium",
+      "identifier": "203.0.113.90",
+      "evidence_lines": [
+        54
+      ],
+      "reason": "Failed login attempt detected on 203.0.113.90",
+      "suggested_action": "Block IP 203.0.113.90 and investigate account history for unauthorized access attempts.",
+      "sources": [
+        "local_ai"
+      ]
+    },
+    {
+      "attack_type": "SQL Injection",
+      "severity": "Medium",
+      "identifier": "203.0.113.90",
+      "evidence_lines": [
+        56,
+        57,
+        58,
+        59,
+        67,
+        68,
+        99,
+        101
+      ],
+      "reason": "Failed to access /wp-admin/ due to path traversal attempt detected in log line 57 (GET /wp-admin/)",
+      "suggested_action": "Block /wp-admin/ and /assets/ paths on 203.0.113.90; Review /wp-config.php for SQL injection patterns.",
+      "sources": [
+        "local_ai"
       ]
     },
     {
@@ -93,19 +252,5 @@
       ]
     }
   ],
-  "errors": [
-    "Chunk 4, attempt 2: Expecting ',' delimiter: line 11 column 6 (char 849)",
-    "Chunk 5, attempt 2: Unterminated string starting at: line 9 column 9 (char 499)",
-    "Chunk 6, attempt 2: Unterminated string starting at: line 16 column 9 (char 961)",
-    "Chunk 7, attempt 2: Expecting ',' delimiter: line 12 column 6 (char 938)",
-    "Chunk 8, attempt 2: Unterminated string starting at: line 9 column 9 (char 511)",
-    "Chunk 12, attempt 2: Model returned no JSON object",
-    "Chunk 14, attempt 2: Unterminated string starting at: line 8 column 9 (char 166)",
-    "Chunk 15, attempt 2: Expecting ',' delimiter: line 10 column 6 (char 935)",
-    "Chunk 16, attempt 2: Model returned no JSON object",
-    "Chunk 19, attempt 2: Unterminated string starting at: line 10 column 9 (char 620)",
-    "Chunk 26, attempt 2: Unterminated string starting at: line 9 column 9 (char 501)",
-    "Chunk 30, attempt 2: Expecting ',' delimiter: line 10 column 6 (char 1026)",
-    "Chunk 31, attempt 2: Model returned no JSON object"
-  ]
+  "errors": []
 }
