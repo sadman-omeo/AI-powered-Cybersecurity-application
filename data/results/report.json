@@ -1,0 +1,109 @@
+{
+  "status": "partial",
+  "log_file": "Cultive8_Workspace_Agrigen_Server.log",
+  "total_entries": 258,
+  "chunks_processed": 32,
+  "local_model": "models/qwen3.5-0.8b-Q4_K_M.gguf",
+  "duration_seconds": 945.28,
+  "findings_count": 4,
+  "findings": [
+    {
+      "attack_type": "Possible brute-force followed by access",
+      "severity": "High",
+      "identifier": "203.0.113.44",
+      "evidence_lines": [
+        5,
+        13,
+        23,
+        35,
+        50,
+        65,
+        80,
+        94,
+        108,
+        123,
+        153,
+        189,
+        196,
+        198,
+        201
+      ],
+      "reason": "12 failed logins for workspace.admin followed by successful authentication and later activity.",
+      "suggested_action": "Investigate login history, validate account ownership, enforce MFA and rate limits.",
+      "sources": [
+        "cross_chunk_rules"
+      ]
+    },
+    {
+      "attack_type": "Unusual request rate",
+      "severity": "Medium",
+      "identifier": "203.0.113.155",
+      "evidence_lines": [
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170
+      ],
+      "reason": "Up to 135 requests in one short window; 9 logged rate-limit responses.",
+      "suggested_action": "Review client activity, verify authorized automation and apply rate limiting.",
+      "sources": [
+        "cross_chunk_rules"
+      ]
+    },
+    {
+      "attack_type": "SQL injection attempt",
+      "severity": "Medium",
+      "identifier": "203.0.113.72",
+      "evidence_lines": [
+        29,
+        30,
+        32,
+        222
+      ],
+      "reason": "SQL-style payloads appeared in request paths; success is not established.",
+      "suggested_action": "Inspect rejected requests, use parameterized queries and review WAF protections.",
+      "sources": [
+        "cross_chunk_rules"
+      ]
+    },
+    {
+      "attack_type": "Sensitive-path scanning",
+      "severity": "Medium",
+      "identifier": "203.0.113.90",
+      "evidence_lines": [
+        54,
+        56,
+        58,
+        60,
+        99,
+        101
+      ],
+      "reason": "Requests targeted 5 different sensitive paths.",
+      "suggested_action": "Review access controls, investigate exposed files and block abusive scanning where appropriate.",
+      "sources": [
+        "cross_chunk_rules"
+      ]
+    }
+  ],
+  "errors": [
+    "Chunk 4, attempt 2: Expecting ',' delimiter: line 10 column 6 (char 727)",
+    "Chunk 6, attempt 2: Unterminated string starting at: line 8 column 9 (char 601)",
+    "Chunk 7, attempt 2: Unterminated string starting at: line 7 column 9 (char 111)",
+    "Chunk 8, attempt 2: Unterminated string starting at: line 9 column 9 (char 511)",
+    "Chunk 14, attempt 2: Expecting ',' delimiter: line 13 column 6 (char 1128)",
+    "Chunk 16, attempt 2: Unterminated string starting at: line 9 column 9 (char 646)",
+    "Chunk 19, attempt 2: Unterminated string starting at: line 8 column 9 (char 580)",
+    "Chunk 24, attempt 2: Expecting ',' delimiter: line 21 column 6 (char 1073)",
+    "Chunk 25, attempt 2: Unterminated string starting at: line 18 column 9 (char 1077)",
+    "Chunk 26, attempt 2: Unterminated string starting at: line 9 column 9 (char 501)",
+    "Chunk 30, attempt 2: Model returned no JSON object"
+  ]
+}
